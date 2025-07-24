@@ -1,14 +1,13 @@
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import TransactionsPage from './components/Pages/TransactionPage';
+// import MetricsPage from './pages/MetricsPage';
 
-function App() {
-
+export default function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
-  )
+    <Routes>
+      <Route path="/" element={<TransactionsPage />} />
+      {/* <Route path="/metrics" element={<MetricsPage />} /> */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 }
-
-export default App
