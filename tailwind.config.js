@@ -11,7 +11,7 @@ export default {
         primaryLight: '#E0EDFF',
         neutralHard: '#E0EDFF',
         neutralDark: '#606882',
-        neutral: '#606882',
+        neutral: '#606882', // <-- esto podría estar sobrescribiendo `neutral.*` de Tailwind, mejor evitar usar este nombre
         backgroundBase: '#FAFAFA',
         success: '#1C8367',
       },
