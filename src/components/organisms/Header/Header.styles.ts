@@ -1,5 +1,5 @@
 export const headerContainerClass =
-  'fixed bg-white p-2 border-b border-[#DEE2EC] rounded-bl-[32px] h-corner z-200';
+  ' bg-white p-2 border-b border-[#DEE2EC] rounded-bl-[32px] h-corner z-200';
 
 export const cornerStyle = `
     .h-corner::after {
