@@ -1,5 +1,3 @@
-// src/components/atoms/Link/Link.styles.ts
-
 export const sizeClasses = {
   sm: 'text-[12px] leading-[16px]',
   md: 'text-[14px] leading-[18px]',

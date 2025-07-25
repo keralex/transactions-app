@@ -1,4 +1,3 @@
-// src/components/atoms/Container/Container.tsx
 import type { FC } from 'react';
 import type { ContainerProps } from './Container.interfaces';
 import {

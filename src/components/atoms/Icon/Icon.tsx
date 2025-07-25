@@ -1,4 +1,3 @@
-// src/components/atoms/Icon/Icon.tsx
 import { type FC } from 'react';
 import { iconWrapperStyle } from './Icon.styles';
 import { icons } from './icons';

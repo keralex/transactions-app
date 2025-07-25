@@ -1,5 +1,3 @@
-// src/components/atoms/Container/types.ts
-
 export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;

@@ -1,4 +1,3 @@
-// src/components/atoms/Link/Link.tsx
 import type { FC, KeyboardEvent } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Icon } from '../Icon';

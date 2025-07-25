@@ -1,5 +1,3 @@
-// src/components/atoms/Button/Button.styles.ts
-
 export const buttonBaseStyles =
   'rounded-[24px] inline-flex items-center justify-center cursor-pointer transition-shadow disabled:cursor-not-allowed';
 

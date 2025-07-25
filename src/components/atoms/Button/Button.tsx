@@ -1,5 +1,3 @@
-// src/components/atoms/Button/Button.tsx
-// src/components/atoms/Button/Button.tsx
 import type { FC, MouseEvent } from 'react';
 import { Icon } from '../Icon';
 import { buttonBaseStyles, buttonSizes, buttonVariants, buttonDisabled, iconDimensions } from './Button.styles';
