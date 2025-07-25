@@ -25,7 +25,9 @@ export const Icon: FC<IconProps> = ({
             role={role}
             aria-label={ariaLabel ?? name}
             aria-hidden={ariaLabel ? undefined : true}
-            dangerouslySetInnerHTML={{ __html: SvgIcon }}
+            dangerouslySetInnerHTML={{
+                __html: SvgIcon.replace(/(width|height)="[^"]*"/g, ''),
+            }}
             {...rest}
         />
     );

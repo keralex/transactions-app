@@ -2,7 +2,7 @@ import { type FC, useRef, useEffect } from 'react';
 import { menuItems, overlayClass, closeButtonClass } from './MobileMenu.styles';
 import type { MobileMenuProps } from './MobileMenu.interfaces';
 import { Button, Container, Link } from '../../atoms';
-import { UalaCompleteLogo } from '../../atoms/UalaCompleteLogo';
+import { LogoBase } from '../../atoms/LogoBase/LogoBase';
 
 export const MobileMenu: FC<MobileMenuProps> = ({ onClose }) => {
     const menuRef = useRef<HTMLDivElement>(null);
@@ -27,13 +27,18 @@ export const MobileMenu: FC<MobileMenuProps> = ({ onClose }) => {
             <Container isFlex direction="column" justify="start" padding="lg" className="h-full">
                 {/* Header del menú */}
                 <Container isFlex justify="between" align="center" className="mb-6">
-                    <UalaCompleteLogo />
+                    <LogoBase
+                        src="/app/assets/logos/logo_complete.svg"
+                        alt="Ualá Completo"
+                        size={160}
+                    />
                     <Button
                         icon="close"
                         variant="ghost"
                         onClick={onClose}
                         aria-label="Cerrar menú"
                         className={closeButtonClass}
+                        size='sm'
                     />
                 </Container>
 

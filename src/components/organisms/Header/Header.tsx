@@ -2,8 +2,9 @@
 import { useRef, useState, type FC } from 'react';
 import type { HeaderProps } from './Header.interfaces';
 import { headerContainerClass, cornerStyle } from './Header.styles';
-import { Button, Container, UalaLogo } from '../../atoms';
+import { Button, Container } from '../../atoms';
 import { MobileMenu } from '../MobileMenu';
+import { LogoBase } from '../../atoms/LogoBase/LogoBase';
 
 export const Header: FC<HeaderProps> = ({ onMenuClick }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,11 @@ export const Header: FC<HeaderProps> = ({ onMenuClick }) => {
                     </div>
 
                     <Container isFlex justify="center" className="flex-1">
-                        <UalaLogo size={61} />
+                        <LogoBase
+                            src="/app/assets/logos/uala.svg"
+                            alt="Ualá"
+                            size={61}
+                        />
                     </Container>
 
                     {isOpen && <MobileMenu onClose={() => setIsOpen(false)} />}
