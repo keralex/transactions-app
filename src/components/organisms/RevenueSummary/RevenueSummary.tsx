@@ -1,6 +1,7 @@
 import { Container, Link } from '../../atoms';
 import { useTransactionFilter } from '../../../stores/useTransactionFilter';
 import { type FC } from 'react';
+import { useFilteredTransactions } from '../../../hooks/useFilteredTransactions';
 
 const options = [
     { label: 'Diario', value: 'daily' },
@@ -8,22 +9,12 @@ const options = [
     { label: 'Mensual', value: 'monthly' },
 ] as const;
 
-const amountMap: any = {
-    daily: '$5.000,00',
-    weekly: '$35.000,00',
-    monthly: '$120.000,00',
-};
-
 export const RevenueSummary: FC = () => {
     const { filter, setFilter } = useTransactionFilter();
+    const { formattedTotal } = useFilteredTransactions();
 
     return (
-        <Container
-            className="p-4"
-            isFlex
-            direction="column"
-            gap={4}
-        >
+        <Container className="p-4" isFlex direction="column" gap={4}>
             <h2 className="text-base font-semibold text-neutralDark">Tus cobros</h2>
 
             <div className="flex justify-between text-sm font-medium text-neutralDark">
@@ -41,7 +32,7 @@ export const RevenueSummary: FC = () => {
             </div>
 
             <p className="text-2xl font-semibold text-primary mt-2">
-                + {amountMap[filter]}
+                + {formattedTotal}
             </p>
 
             <Link
