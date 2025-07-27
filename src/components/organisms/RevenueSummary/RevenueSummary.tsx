@@ -12,12 +12,11 @@ const options = [
 export const RevenueSummary: FC = () => {
     const { filter, setFilter } = useTransactionFilter();
     const { amountParts } = useFilteredTransactions();
-
     return (
-        <Container className="p-4" isFlex direction="column" gap={4}>
+        <Container className="p-4 " isFlex direction="column" gap={4}>
             <Text as='h1' variant='h1' className='text-text-title' weight='semibold'>Tus cobros</Text>
 
-            <div className="flex justify-center text-sm font-medium text-neutral-dark w-full mt-6 mb-4">
+            <div className="grid grid-cols-3 gap-0 text-sm font-medium w-full mt-6 mb-4">
                 {options.map((opt) => (
                     <button
                         key={opt.value}

@@ -1,0 +1,14 @@
+.c-corner {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 58px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url('/src/app/assets/icons/h-corner.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+}
