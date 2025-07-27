@@ -10,7 +10,7 @@ interface Props {
 
 export const TransactionItem: FC<Props> = ({ label, amount, date }) => {
     return (
-        <div className="flex items-center justify-between border-b border-border-neutral py-3">
+        <div className="flex items-center justify-between border-b border-border-neutral py-3 px-2">
             <div className="flex items-center gap-3">
                 <div className="w-fit flex items-center justify-center border-2 border-success rounded-xl">
                     <Icon name="category-stores" size={32} customClass="text-success" />

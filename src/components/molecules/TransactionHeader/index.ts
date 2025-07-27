@@ -1,2 +1,1 @@
-export * from './TransactionItem';
 export * from './TransactionHeader';
