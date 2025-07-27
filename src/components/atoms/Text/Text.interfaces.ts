@@ -4,7 +4,7 @@ export interface TextProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'button';
   weight?: 'regular' | 'semibold';
-  color?: keyof typeof import('./Text.styles').colorVariants;
+  color?: string;
   as?: ElementType;
   className?: string;
 }

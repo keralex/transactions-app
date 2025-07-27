@@ -12,6 +12,9 @@ export const Icon: FC<IconProps> = ({
     ...rest
 }) => {
     const SvgIcon = icons[name];
+    const sanitizedSvg = SvgIcon
+        .replace(/(width|height)="[^"]*"/g, '')
+        .replace(/fill=".*?"/g, 'fill="currentColor"');
 
     if (!SvgIcon) {
         console.warn(`Icon "${name}" no se encuentra registrado.`);
@@ -25,9 +28,7 @@ export const Icon: FC<IconProps> = ({
             role={role}
             aria-label={ariaLabel ?? name}
             aria-hidden={ariaLabel ? undefined : true}
-            dangerouslySetInnerHTML={{
-                __html: SvgIcon.replace(/(width|height)="[^"]*"/g, ''),
-            }}
+            dangerouslySetInnerHTML={{ __html: sanitizedSvg }}
             {...rest}
         />
     );

@@ -1,4 +1,4 @@
-import { Container, Link } from '../../atoms';
+import { Container, Link, Text } from '../../atoms';
 import { useTransactionFilter } from '../../../stores/useTransactionFilter';
 import { type FC } from 'react';
 import { useFilteredTransactions } from '../../../hooks/useFilteredTransactions';
@@ -11,18 +11,18 @@ const options = [
 
 export const RevenueSummary: FC = () => {
     const { filter, setFilter } = useTransactionFilter();
-    const { formattedTotal } = useFilteredTransactions();
+    const { amountParts } = useFilteredTransactions();
 
     return (
         <Container className="p-4" isFlex direction="column" gap={4}>
-            <h2 className="text-base font-semibold text-neutralDark">Tus cobros</h2>
+            <Text as='h1' variant='h1' color='text-title' weight='semibold'>Tus cobros</Text>
 
-            <div className="flex justify-between text-sm font-medium text-neutralDark">
+            <div className="flex justify-center text-sm font-medium text-neutralDar w-full mt-6 mb-4">
                 {options.map((opt) => (
                     <button
                         key={opt.value}
                         onClick={() => setFilter(opt.value)}
-                        className={`px-2 py-1 ${filter === opt.value ? 'text-primary font-semibold relative' : 'opacity-60'
+                        className={`font-public px-5 py-3 text-text-light font-normal ${filter === opt.value && 'font-semibold relative'
                             }`}
                     >
                         {opt.label}
@@ -30,22 +30,24 @@ export const RevenueSummary: FC = () => {
                     </button>
                 ))}
             </div>
-
-            <p className="text-2xl font-semibold text-primary mt-2">
-                + {formattedTotal}
-            </p>
-
-            <Link
-                to="/metrics"
-                iconName="analyze"
-                iconSide="left"
-                color="primary"
-                size="md"
-                className="mt-4"
-                isBold
-            >
-                Ver métricas
-            </Link>
-        </Container>
+            <Container isFlex justify='center' align='center' className='mb-4'>
+                <Text as='p' className="text-[34px]" color='text-dark'>
+                    + $ {amountParts.integer}
+                    <Text as='span' className="text-[22px] ">,{amountParts.decimal}</Text>
+                </Text>
+            </Container>
+            <Container isFlex justify='center' padding='lg'>
+                <Link
+                    to="/metrics"
+                    iconName="analyze"
+                    iconSide="left"
+                    color="primary"
+                    size="md"
+                    isBold
+                >
+                    Ver métricas
+                </Link>
+            </Container>
+        </Container >
     );
 };

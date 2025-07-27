@@ -11,12 +11,3 @@ export const weightVariants = {
   regular: 'font-normal',
   semibold: 'font-semibold',
 };
-
-export const colorVariants = {
-  dark: 'text-neutralDark',
-  primary: 'text-primary',
-  white: 'text-white',
-  success: 'text-success',
-  gray: 'text-gray',
-  danger: 'text-red-500',
-};

@@ -7,7 +7,10 @@ import type { Transaction } from '../types/transactions';
 interface UseFilteredTransactionsResult {
   filteredTransactions: Transaction[];
   total: number;
-  formattedTotal: string;
+  amountParts: {
+    integer: string;
+    decimal: string;
+  };
   isLoading: boolean;
   error: unknown;
 }
@@ -37,18 +40,22 @@ export const useFilteredTransactions = (): UseFilteredTransactionsResult => {
     };
   }, [transactions, filter]);
 
-  const formattedTotal = useMemo(() => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 2,
-    }).format(total);
+  const amountParts = useMemo(() => {
+    const [integer, decimal = '00'] = total.toFixed(2).split('.');
+
+    const formattedInteger = new Intl.NumberFormat('es-AR').format(
+      Number(integer)
+    );
+    return {
+      integer: formattedInteger,
+      decimal,
+    };
   }, [total]);
 
   return {
     filteredTransactions,
     total,
-    formattedTotal,
+    amountParts,
     isLoading,
     error,
   };
