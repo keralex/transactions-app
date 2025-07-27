@@ -13,6 +13,7 @@
   --color-background-base: #fafafa;
   --color-success: #1c8367;
   --font-public: 'Public Sans', sans-serif;
+  --shadow-soft: 0px 2px 24px rgba(85, 85, 85, 0.08);
 }
 
 body {
