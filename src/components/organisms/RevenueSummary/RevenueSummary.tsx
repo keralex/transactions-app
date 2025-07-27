@@ -14,8 +14,8 @@ export const RevenueSummary: FC = () => {
     const { amountParts } = useFilteredTransactions();
     return (
         <div className='bg-white '>
-            <Container className=" bg-background-base p-4 border-r border-[#DEE2EC] rounded-tr-[32px] border-tl-transparent " isFlex direction="column" gap={4}>
-                <Text as='h1' variant='h1' className='text-text-title' weight='semibold'>Tus cobros</Text>
+            <Container className=" bg-background-base p-4 pt-6 border-r border-[#DEE2EC] rounded-tr-[28px] border-tl-transparent " isFlex direction="column" gap={4}>
+                <Text as='h1' variant='h1' className='text-text-title pl-9' weight='semibold'>Tus cobros</Text>
 
                 <div className="grid grid-cols-3 gap-0 text-sm font-medium w-full mt-6 mb-4">
                     {options.map((opt) => (

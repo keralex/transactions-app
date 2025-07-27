@@ -5,7 +5,7 @@ export const cornerStyle = `
   .h-corner-bottom::after {
     content: '';
     position: absolute;
-    top: 55px;
+    top: 54px;
     right: 0;
     width: 32px;
     height: 32px;
