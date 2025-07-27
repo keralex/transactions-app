@@ -8,7 +8,7 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
     return (
-        <div className="min-h-screen  text-neutral-dark font-sans bg-background-base">
+        <div className="min-h-screen font-public bg-background-base">
             <Header />
             <main>{children}</main>
         </div>

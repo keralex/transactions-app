@@ -15,9 +15,9 @@ export const RevenueSummary: FC = () => {
 
     return (
         <Container className="p-4" isFlex direction="column" gap={4}>
-            <Text as='h1' variant='h1' color='text-title' weight='semibold'>Tus cobros</Text>
+            <Text as='h1' variant='h1' className='text-text-title' weight='semibold'>Tus cobros</Text>
 
-            <div className="flex justify-center text-sm font-medium text-neutralDar w-full mt-6 mb-4">
+            <div className="flex justify-center text-sm font-medium text-neutral-dark w-full mt-6 mb-4">
                 {options.map((opt) => (
                     <button
                         key={opt.value}
@@ -31,7 +31,7 @@ export const RevenueSummary: FC = () => {
                 ))}
             </div>
             <Container isFlex justify='center' align='center' className='mb-4'>
-                <Text as='p' className="text-[34px]" color='text-dark'>
+                <Text as='p' className="text-[34px] text-text-dark" >
                     + $ {amountParts.integer}
                     <Text as='span' className="text-[22px] ">,{amountParts.decimal}</Text>
                 </Text>

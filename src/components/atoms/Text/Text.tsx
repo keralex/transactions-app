@@ -6,17 +6,15 @@ export const Text: FC<TextProps> = ({
     children,
     variant = 'body',
     weight = 'regular',
-    color = 'text-dark',
     className = '',
     as: Component = 'p',
     ...props
 }) => {
     const variantClass = baseVariants[variant];
     const weightClass = weightVariants[weight];
-    const colorClass = `text-${color}`;
     return (
         <Component
-            className={`${variantClass} ${weightClass} ${colorClass} ${className} font-public`}
+            className={`${variantClass} ${weightClass}  ${className} font-public`}
             {...props}
         >
             {children}
