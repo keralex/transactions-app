@@ -3,9 +3,10 @@ import { Icon } from '../Icon';
 import { buttonBaseStyles, buttonSizes, buttonVariants, buttonDisabled, iconDimensions } from './Button.styles';
 import type { ButtonProps } from './Button.interfaces';
 
-export const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps & { iconSize?: number }> = ({
     label,
     icon,
+    iconSize,
     iconPosition = 'left',
     variant = 'primary',
     size = 'md',
@@ -23,7 +24,11 @@ export const Button: FC<ButtonProps> = ({
 
     const iconElement = (side: 'left' | 'right') =>
         icon && iconPosition === side ? (
-            <Icon name={icon} size={iconDimensions[size]} className={label || children ? (side === 'left' ? 'mr-2' : 'ml-2') : ''} />
+            <Icon
+                name={icon}
+                size={iconSize ?? iconDimensions[size]}
+                className={label || children ? (side === 'left' ? 'mr-2' : 'ml-2') : ''}
+            />
         ) : null;
 
     return (
@@ -31,13 +36,13 @@ export const Button: FC<ButtonProps> = ({
             type={type}
             role="button"
             className={`
-            ${buttonBaseStyles}
-            ${buttonSizes[size]}    
-            ${buttonVariants[variant]}
-            ${buttonDisabled[variant]}
-            ${isFullWidth ? 'w-full' : ''}
-            ${className}
-            `}
+        ${buttonBaseStyles}
+        ${buttonSizes[size]}    
+        ${buttonVariants[variant]}
+        ${buttonDisabled[variant]}
+        ${isFullWidth ? 'w-full' : ''}
+        ${className}
+      `}
             onClick={handleClick}
             disabled={disabled}
             aria-disabled={disabled}

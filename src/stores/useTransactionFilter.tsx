@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { DateRange } from 'react-day-picker';
-import type { CardType, PaymentMethodType } from '@/types/transactions';
+import type { CardType, PaymentMethodType } from '../types/transactions';
 
 type FilterType = 'daily' | 'weekly' | 'monthly';
 

@@ -4,3 +4,4 @@ export * from './Icon';
 export * from './Container';
 export * from './LogoBase';
 export * from './Text';
+export * from './Switch';

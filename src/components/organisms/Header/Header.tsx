@@ -19,7 +19,7 @@ export const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
 
     return (
-        <header>
+        <header className='fixed w-full z-50'>
             <style dangerouslySetInnerHTML={{ __html: cornerStyle }} />
             <Container style={{ filter: 'drop-shadow(var(--elevation-shadow-soft))' }} className={`${headerContainerClass} h-[56px]`} isFlex>
                 <Container isFlex justify="between" align="center" className="relative w-full mx-auto h-full">

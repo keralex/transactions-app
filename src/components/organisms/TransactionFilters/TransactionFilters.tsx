@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
-import { Button, Icon, Text, Container } from '../../../components/atoms';
+import { Button, Container, Text } from '../../../components/atoms';
 import { useTransactionFilter } from '../../../stores/useTransactionFilter';
-import type { Metadata, CardType, PaymentMethodType } from '../../../types/transactions';
+import type { Metadata, } from '../../../types/transactions';
 import { DateRangeCalendar } from '../../molecules/DateRangeCalendar';
 import { Tag, RangeSlider } from '../../molecules';
+import { FilterGroup } from '../../molecules/FilterGroup';
 
 interface Props {
     onClose: () => void;
@@ -107,17 +108,17 @@ export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
 
     return (
         <aside
-            className={`fixed top-[56px] right-0 w-full h-[calc(100vh-56px)] z-50 bg-white shadow-lg overflow-y-auto transition-transform duration-300 ease-in-out ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}
+            className={`fixed top-0 pt-[56px] right-0 w-full h-[100vh] z-40 bg-background-base shadow-lg overflow-y-auto transition-transform duration-300 ease-in-out ${isVisible ? 'translate-x-0' : 'translate-x-full'} p-5`}
             aria-labelledby="filters-title"
         >
-            <Button icon="back" label="Volver" variant="ghost" className="absolute top-4 left-4 z-10" onClick={onClose} />
+            <Button icon="chevron-left" iconSize={8} label="Filtros" variant="ghost" className=" top-4 left-4 z-10" onClick={onClose} />
 
-            <header className="px-5 pt-6 pb-2 flex justify-between items-center">
-                <Text as="h2" id="filters-title" className="text-xl font-semibold text-text-dark">Filtros disponibles</Text>
-                <Button label="Limpiar" variant="primary" size="sm" onClick={resetAll} disabled={!hasActiveFilters} />
-            </header>
+            <Container className="px-5 pt-6 pb-2 flex justify-between items-center">
+                <Text as="h2" variant='h2' id="filters-title" className=" font-semibold text-text-title">Todos los filtros</Text>
+                <Button label="Limpiar" variant="ghost" className='text-primary text-[16px]' size="sm" onClick={resetAll} disabled={!hasActiveFilters} />
+            </Container>
 
-            <section className="flex flex-col gap-4 px-5">
+            <section className="flex flex-col px-5">
                 <FilterGroup
                     label="Fecha"
                     icon="calendar"
@@ -134,25 +135,17 @@ export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
 
                 <FilterGroup
                     label="Tarjeta"
-                    icon="card"
+                    icon="card-alt"
                     isOpen={openSections.card}
                     onToggle={() => toggleSection('card')}
                 >
                     {renderTags('card', selectedCards, toggleCard, resetCards)}
                 </FilterGroup>
 
-                <FilterGroup
-                    label="Métodos de cobro"
-                    icon="method"
-                    isOpen={openSections.method}
-                    onToggle={() => toggleSection('method')}
-                >
-                    {renderTags('method', selectedMethods, toggleMethod, resetMethods)}
-                </FilterGroup>
 
                 <FilterGroup
                     label="Cuotas"
-                    icon="installments"
+                    icon="calendar-bill"
                     isOpen={openSections.installments}
                     onToggle={() => toggleSection('installments')}
                 >
@@ -161,39 +154,32 @@ export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
 
                 <FilterGroup
                     label="Monto"
-                    icon="amount"
+                    icon="commission"
                     isOpen={openSections.amount}
                     onToggle={() => toggleSection('amount')}
                 >
                     <RangeSlider value={amountRange} onValueChange={setAmountRange} />
                 </FilterGroup>
-            </section>
+                <FilterGroup
+                    label="Métodos de cobro"
+                    icon="categories"
+                    isOpen={openSections.method}
+                    onToggle={() => toggleSection('method')}
+                >
+                    {renderTags('method', selectedMethods, toggleMethod, resetMethods)}
+                </FilterGroup>
 
-            <Button
-                label="Aplicar filtros"
-                onClick={onClose}
-                disabled={!hasActiveFilters}
-                variant="secondary"
-                className="mx-5 my-6"
-            />
+            </section>
+            <Container padding='md'>
+                <Button
+                    label="Aplicar filtros"
+                    onClick={onClose}
+                    disabled={!hasActiveFilters}
+                    variant="primary"
+                    className="w-full"
+                />
+            </Container>
         </aside>
     );
 };
 
-const FilterGroup = ({ label, icon, isOpen, onToggle, children }: {
-    label: string;
-    icon: string;
-    isOpen: boolean;
-    onToggle: () => void;
-    children: React.ReactNode;
-}) => (
-    <div className="border-b pb-4">
-        <button className="w-full flex items-center justify-between py-3" onClick={onToggle} aria-expanded={isOpen} aria-controls={`${label}-content`}>
-            <Icon name={icon} size={20} className="mr-2" />
-            <Text as="span" className="font-medium">{label}</Text>
-        </button>
-        <div id={`${label}-content`} hidden={!isOpen} className="mt-2">
-            {children}
-        </div>
-    </div>
-);

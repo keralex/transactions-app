@@ -16,8 +16,10 @@ export const Icon: FC<IconProps> = ({
         console.warn(`Icon "${name}" no se encuentra registrado.`);
         return null;
     }
+
     const sanitizedSvg = SvgIcon
         .replace(/(width|height)="[^"]*"/g, '')
+
     return (
         <span
             className={`${iconWrapperStyle} ${customClass}`}
