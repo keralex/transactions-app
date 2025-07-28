@@ -1,10 +1,9 @@
 import { useState, useMemo } from 'react';
-import { Button, Icon, Text, RangeSlider, Container } from '../../../components/atoms';
+import { Button, Icon, Text, Container } from '../../../components/atoms';
 import { useTransactionFilter } from '../../../stores/useTransactionFilter';
 import type { Metadata, CardType, PaymentMethodType } from '../../../types/transactions';
-import styles from './TransactionFiltersPanel.module.scss';
 import { DateRangeCalendar } from '../../molecules/DateRangeCalendar';
-import { Tag } from '../../molecules';
+import { Tag, RangeSlider } from '../../molecules';
 
 interface Props {
     onClose: () => void;
@@ -12,7 +11,7 @@ interface Props {
     metadata: Metadata;
 }
 
-export const TransactionFiltersPanel = ({ onClose, isVisible, metadata }: Props) => {
+export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
     const [openSections, setOpenSections] = useState({
         date: false,
         card: false,
@@ -85,7 +84,7 @@ export const TransactionFiltersPanel = ({ onClose, isVisible, metadata }: Props)
     };
 
     const renderTags = (type: 'card' | 'method' | 'installments', selected: any[], toggle: any, reset: () => void) => (
-        <ul className={styles.tagList}>
+        <ul className="flex flex-wrap gap-2 mt-2">
             {tagOptions[type].map((opt) => {
                 const isAll = opt.value === 'all';
                 const isSelected = isAll ? selected.length === 0 : selected.includes(opt.value);
@@ -107,15 +106,18 @@ export const TransactionFiltersPanel = ({ onClose, isVisible, metadata }: Props)
     );
 
     return (
-        <aside className={`${styles.panel} ${isVisible ? styles.active : ''}`} aria-labelledby="filters-title">
-            <Button icon="back" label="Volver" variant="ghost" className={styles.backBtn} onClick={onClose} />
+        <aside
+            className={`fixed top-[56px] right-0 w-full h-[calc(100vh-56px)] z-50 bg-white shadow-lg overflow-y-auto transition-transform duration-300 ease-in-out ${isVisible ? 'translate-x-0' : 'translate-x-full'}`}
+            aria-labelledby="filters-title"
+        >
+            <Button icon="back" label="Volver" variant="ghost" className="absolute top-4 left-4 z-10" onClick={onClose} />
 
-            <header className={styles.header}>
-                <Text as="h2" id="filters-title" className={styles.title}>Filtros disponibles</Text>
+            <header className="px-5 pt-6 pb-2 flex justify-between items-center">
+                <Text as="h2" id="filters-title" className="text-xl font-semibold text-text-dark">Filtros disponibles</Text>
                 <Button label="Limpiar" variant="primary" size="sm" onClick={resetAll} disabled={!hasActiveFilters} />
             </header>
 
-            <section className={styles.section}>
+            <section className="flex flex-col gap-4 px-5">
                 <FilterGroup
                     label="Fecha"
                     icon="calendar"
@@ -167,7 +169,13 @@ export const TransactionFiltersPanel = ({ onClose, isVisible, metadata }: Props)
                 </FilterGroup>
             </section>
 
-            <Button label="Aplicar filtros" onClick={onClose} disabled={!hasActiveFilters} variant="secondary" className={styles.applyBtn} />
+            <Button
+                label="Aplicar filtros"
+                onClick={onClose}
+                disabled={!hasActiveFilters}
+                variant="secondary"
+                className="mx-5 my-6"
+            />
         </aside>
     );
 };
@@ -179,12 +187,12 @@ const FilterGroup = ({ label, icon, isOpen, onToggle, children }: {
     onToggle: () => void;
     children: React.ReactNode;
 }) => (
-    <div className={styles.filterGroup}>
-        <button className={styles.groupHeader} onClick={onToggle} aria-expanded={isOpen} aria-controls={`${label}-content`}>
-            <Icon name={icon} size={20} className={styles.groupIcon} />
-            <Text as="span" className={styles.groupLabel}>{label}</Text>
+    <div className="border-b pb-4">
+        <button className="w-full flex items-center justify-between py-3" onClick={onToggle} aria-expanded={isOpen} aria-controls={`${label}-content`}>
+            <Icon name={icon} size={20} className="mr-2" />
+            <Text as="span" className="font-medium">{label}</Text>
         </button>
-        <div id={`${label}-content`} hidden={!isOpen} className={styles.groupContent}>
+        <div id={`${label}-content`} hidden={!isOpen} className="mt-2">
             {children}
         </div>
     </div>

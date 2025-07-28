@@ -7,12 +7,14 @@ import { Button, Container, Icon, Text } from '../../atoms';
 import type { DateRange } from 'react-day-picker';
 import { DateRangeCalendar } from '../../molecules/DateRangeCalendar';
 import { downloadCsv } from '../../../utils/downloadTransactionCsv';
+import { TransactionFilters } from '../TransactionFilters/TransactionFilters';
 
 export const TransactionList: FC = () => {
     const { filteredTransactions, getTransactionsInRange, isLoading } = useFilteredTransactions();
     const { metadata } = useTransactions();
     const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
     const [calendarOpen, setCalendarOpen] = useState(false);
+    const [filtersOpen, setFiltersOpen] = useState(false);
 
 
     const toggleCalendar = () => setCalendarOpen(prev => !prev);
@@ -64,7 +66,7 @@ export const TransactionList: FC = () => {
                 </Container>
             )}
             <TransactionHeader
-                // onFilterClick={() => navigate('/filters')}
+                onFilterClick={() => setFiltersOpen(true)}
                 onExportClick={toggleCalendar}
             />
             <div className="flex flex-col divide-y divide-neutralHard ">
@@ -81,6 +83,11 @@ export const TransactionList: FC = () => {
                     />
                 ))}
             </div>
+            <TransactionFilters
+                isVisible={filtersOpen}
+                onClose={() => setFiltersOpen(false)}
+                metadata={metadata}
+            />
         </Container>
     );
 };
