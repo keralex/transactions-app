@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import type { ContainerProps } from './Container.interfaces';
 import {
-    baseContainerClass,
     paddingOptions,
     marginOptions,
     flexDirectionOptions,
@@ -27,7 +26,6 @@ export const Container: FC<ContainerProps> = ({
     wrap = false,
     hasBorder = false,
     borderColor = 'gray',
-    disableBaseStyles = false,
     isAuto = false,
     ...rest
 }) => {
@@ -42,7 +40,6 @@ export const Container: FC<ContainerProps> = ({
 
     const composedClassName = [
         className,
-        !disableBaseStyles && baseContainerClass,
         paddingOptions[padding],
         marginOptions[margin],
         flexClass,

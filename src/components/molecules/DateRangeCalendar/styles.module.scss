@@ -1,8 +1,8 @@
 /* Variables declaration */
 /* prettier-ignore */
 .root {
-  --rdp-accent-color: var(--primary-color); /* The accent color used for selected days and UI elements. */
-  --rdp-accent-background-color: #f0f0ff; /* The accent background color used for selected days and UI elements. */
+  --rdp-accent-color: var(--color-primary); /* The accent color used for selected days and UI elements. */
+  --rdp-accent-background-color: #E7EEFF; /* The accent background color used for selected days and UI elements. */
 
   --rdp-day-height: 32px; /* The height of the day cells. */
   --rdp-day-width: 32px; /* The width of the day cells. */
@@ -71,7 +71,7 @@
   border-radius: 8px;
   background: var(--white-color);
   padding: 16px 20px;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 }
 
@@ -207,6 +207,7 @@
 .root[data-nav-layout='around'] .month,
 .root[data-nav-layout='after'] .month {
   position: relative;
+  width: 100%;
 }
 
 .root[data-nav-layout='around'] .month_caption {
@@ -238,12 +239,14 @@
   position: relative;
   flex-wrap: wrap;
   gap: var(--rdp-months-gap);
-  max-width: fit-content;
+  width: 100%;
 }
 
 .month_grid {
   margin-top: 12px;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  width: 100%;
 }
 
 .nav {

@@ -14,7 +14,6 @@ export const Icon: FC<IconProps> = ({
     const SvgIcon = icons[name];
     const sanitizedSvg = SvgIcon
         .replace(/(width|height)="[^"]*"/g, '')
-        .replace(/fill=".*?"/g, 'fill="currentColor"');
 
     if (!SvgIcon) {
         console.warn(`Icon "${name}" no se encuentra registrado.`);

@@ -14,6 +14,5 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   wrap?: boolean;
   hasBorder?: boolean;
   borderColor?: 'gray' | 'primary';
-  disableBaseStyles?: boolean;
   isAuto?: boolean;
 }

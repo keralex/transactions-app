@@ -1,5 +1,3 @@
-export const baseContainerClass = 'w-full';
-
 export const paddingOptions = {
   none: '',
   sm: 'p-2',
