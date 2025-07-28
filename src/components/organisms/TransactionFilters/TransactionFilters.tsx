@@ -66,7 +66,7 @@ export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
             { value: 'all', label: 'Todas' },
             ...[...installmentOptions].sort((a, b) => a - b).map(n => ({
                 value: n,
-                label: `${n} cuota${n > 1 ? 's' : ''}`
+                label: `${n}  `
             }))
         ], [installmentOptions])
     };

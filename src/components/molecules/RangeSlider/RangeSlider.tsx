@@ -1,5 +1,3 @@
-'use client';
-
 import * as Slider from '@radix-ui/react-slider';
 import { useEffect, useState } from 'react';
 import {
@@ -10,6 +8,7 @@ import {
     inputWrapper,
     input,
 } from './RangeSlider.styles';
+import { Container } from '../../atoms';
 
 export interface RangeSliderProps {
     value: [number, number];
@@ -68,37 +67,17 @@ export const RangeSlider = ({ value, onValueChange }: RangeSliderProps) => {
                 <Slider.Thumb className={sliderThumb} aria-label="Monto mínimo" />
                 <Slider.Thumb className={sliderThumb} aria-label="Monto máximo" />
             </Slider.Root>
+            <Container isFlex justify='between'>
+                <div className="flex flex-col items-start  py-1 px-3 rounded-xl  border border-primary">
+                    <span className=" text-neutral-dark text-[10px]">Monto mínimo</span>
+                    <span className="text-[14px] text-text-dark">${value[0]}</span>
+                </div>
 
-            <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1">
-                    <span className="text-sm text-neutral-600">Monto mínimo</span>
-                    <div className={inputWrapper}>
-                        <span className="text-neutral-700">$</span>
-                        <input
-                            className={input}
-                            type="number"
-                            value={inputValues[0]}
-                            onChange={(e) => handleInputChange(e, 0)}
-                            onBlur={() => commitInput(0)}
-                            onKeyDown={(e) => e.key === 'Enter' && commitInput(0)}
-                        />
-                    </div>
+                <div className="flex flex-col items-start  py-1 px-3 rounded-xl  border border-primary">
+                    <span className=" text-neutral-dark text-[10px]">Monto máximo</span>
+                    <span className="text-[14px] text-text-dark">${value[1]}</span>
                 </div>
-                <div className="flex flex-col gap-1">
-                    <span className="text-sm text-neutral-600">Monto máximo</span>
-                    <div className={inputWrapper}>
-                        <span className="text-neutral-700">$</span>
-                        <input
-                            className={input}
-                            type="number"
-                            value={inputValues[1]}
-                            onChange={(e) => handleInputChange(e, 1)}
-                            onBlur={() => commitInput(1)}
-                            onKeyDown={(e) => e.key === 'Enter' && commitInput(1)}
-                        />
-                    </div>
-                </div>
-            </div>
+            </Container>
         </form>
     );
 };

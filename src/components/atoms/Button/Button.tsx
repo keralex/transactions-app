@@ -36,12 +36,12 @@ export const Button: FC<ButtonProps & { iconSize?: number }> = ({
             type={type}
             role="button"
             className={`
-        ${buttonBaseStyles}
-        ${buttonSizes[size]}    
-        ${buttonVariants[variant]}
-        ${buttonDisabled[variant]}
-        ${isFullWidth ? 'w-full' : ''}
-        ${className}
+                ${buttonBaseStyles}
+                ${buttonSizes[size]}    
+                ${buttonVariants[variant]}
+                ${buttonDisabled[variant]}
+                ${isFullWidth ? 'w-full' : ''}
+                ${className}
       `}
             onClick={handleClick}
             disabled={disabled}
