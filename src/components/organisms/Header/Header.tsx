@@ -21,7 +21,7 @@ export const Header: FC<HeaderProps> = ({ onMenuClick }) => {
     return (
         <header>
             <style dangerouslySetInnerHTML={{ __html: cornerStyle }} />
-            <Container className={`${headerContainerClass} h-[56px]`} isFlex>
+            <Container style={{ filter: 'drop-shadow(var(--elevation-shadow-soft))' }} className={`${headerContainerClass} h-[56px]`} isFlex>
                 <Container isFlex justify="between" align="center" className="relative w-full mx-auto h-full">
                     <div className="absolute left-0" ref={toggleRef}>
                         <Button

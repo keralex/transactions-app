@@ -1,5 +1,5 @@
 export const overlayClass = `
-  fixed inset-0 bg-white z-[999] overflow-y-auto transition-all
+  fixed inset-0 bg-white z-[999] overflow-y-auto transition-all h-[100vh]
 `;
 
 export const closeButtonClass = 'text-dark';

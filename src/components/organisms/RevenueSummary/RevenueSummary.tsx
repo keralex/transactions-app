@@ -22,7 +22,7 @@ export const RevenueSummary: FC = () => {
                         <button
                             key={opt.value}
                             onClick={() => setFilter(opt.value)}
-                            className={`font-public px-5 py-3 text-text-light font-normal ${filter === opt.value && 'font-semibold relative'
+                            className={`font-public px-5 py-3 text-text-light font-normal ${filter === opt.value && 'font-semibold'
                                 }`}
                         >
                             {opt.label}

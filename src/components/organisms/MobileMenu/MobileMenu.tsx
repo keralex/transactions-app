@@ -24,9 +24,9 @@ export const MobileMenu: FC<MobileMenuProps> = ({ onClose }) => {
             aria-modal="true"
             aria-label="Menú de navegación"
         >
-            <Container isFlex direction="column" justify="start" padding="lg" className="h-full">
+            <Container isFlex direction="column" justify="start" padding="lg" className="w-full h-full">
                 {/* Header del menú */}
-                <Container isFlex justify="between" align="center" className="mb-6">
+                <Container isFlex justify="between" align="center" className="mb-6 w-full">
                     <LogoBase
                         src="/app/assets/logos/logo_complete.svg"
                         alt="Ualá Completo"

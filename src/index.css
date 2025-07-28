@@ -14,6 +14,7 @@
   --color-success: #1c8367;
   --font-public: 'Public Sans', sans-serif;
   --shadow-soft: 0px 2px 24px rgba(85, 85, 85, 0.08);
+  --elevation-shadow-soft: 0 1px 0 var(--color-border-neutral);
 }
 
 body {

@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
-import { Button, Icon, Text, Tag, RangeSlider, Container } from '../../../components/atoms';
+import { Button, Icon, Text, RangeSlider, Container } from '../../../components/atoms';
 import { useTransactionFilter } from '../../../stores/useTransactionFilter';
 import type { Metadata, CardType, PaymentMethodType } from '../../../types/transactions';
 import styles from './TransactionFiltersPanel.module.scss';
 import { DateRangeCalendar } from '../../molecules/DateRangeCalendar';
+import { Tag } from '../../molecules';
 
 interface Props {
     onClose: () => void;
@@ -107,7 +108,7 @@ export const TransactionFiltersPanel = ({ onClose, isVisible, metadata }: Props)
 
     return (
         <aside className={`${styles.panel} ${isVisible ? styles.active : ''}`} aria-labelledby="filters-title">
-            <Button icon="back" label="Volver" variant="tertiary" className={styles.backBtn} onClick={onClose} />
+            <Button icon="back" label="Volver" variant="ghost" className={styles.backBtn} onClick={onClose} />
 
             <header className={styles.header}>
                 <Text as="h2" id="filters-title" className={styles.title}>Filtros disponibles</Text>
