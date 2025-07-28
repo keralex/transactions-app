@@ -22,7 +22,7 @@ export const Header: FC<HeaderProps> = ({ onMenuClick }) => {
         <header>
             <style dangerouslySetInnerHTML={{ __html: cornerStyle }} />
             <Container className={`${headerContainerClass} h-[56px]`} isFlex>
-                <Container isFlex justify="between" align="center" className="relative mx-auto h-full">
+                <Container isFlex justify="between" align="center" className="relative w-full mx-auto h-full">
                     <div className="absolute left-0" ref={toggleRef}>
                         <Button
                             icon="menu"
