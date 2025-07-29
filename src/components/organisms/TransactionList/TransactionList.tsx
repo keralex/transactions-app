@@ -10,7 +10,7 @@ import { downloadCsv } from '../../../utils/downloadTransactionCsv';
 import { TransactionFilters } from '../TransactionFilters/TransactionFilters';
 
 export const TransactionList: FC = () => {
-    const { filteredTransactions, getTransactionsInRange, isLoading, hasCustomFilters } = useFilteredTransactions();
+    const { filteredTransactions, getTransactionsInRange, isLoading } = useFilteredTransactions();
     const { metadata } = useTransactions();
     const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
     const [calendarOpen, setCalendarOpen] = useState(false);

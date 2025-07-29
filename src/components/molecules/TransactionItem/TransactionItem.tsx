@@ -24,10 +24,10 @@ export const TransactionItem: FC<Props> = ({ label, amount, date }) => {
             </div>
 
             <div className="text-right">
-                <Text variant="h2" weight="semibold" className="text-success">
+                <Text variant="h2" weight="semibold" className="text-success" data-testid="transaction-amount">
                     +{amount}
                 </Text>
-                <Text variant="body" className="text-neutral-dark">{date}</Text>
+                <Text data-testid="transaction-date" variant="body" className="text-neutral-dark">{date}</Text>
             </div>
         </div>
     );

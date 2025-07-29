@@ -111,7 +111,7 @@ export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
             className={`fixed top-0 pt-[56px] right-0 w-full h-[100vh] z-40 bg-background-base shadow-lg overflow-y-auto transition-transform duration-300 ease-in-out ${isVisible ? 'translate-x-0' : 'translate-x-full'} p-5`}
             aria-labelledby="filters-title"
         >
-            <Button icon="chevron-left" iconSize={8} label="Filtros" variant="ghost" className=" top-4 left-4 z-10" onClick={onClose} />
+            <Button data-testid="go-back-button" icon="chevron-left" iconSize={8} label="Filtros" variant="ghost" className=" top-4 left-4 z-10" onClick={onClose} />
 
             <Container className="px-5 pt-6 pb-2 flex justify-between items-center">
                 <Text as="h2" variant='h2' id="filters-title" className=" font-semibold text-text-title">Todos los filtros</Text>
@@ -177,6 +177,7 @@ export const TransactionFilters = ({ onClose, isVisible, metadata }: Props) => {
                     disabled={!hasActiveFilters}
                     variant="primary"
                     className="w-full"
+
                 />
             </Container>
         </aside>
