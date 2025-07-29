@@ -1,12 +1,9 @@
 import * as Slider from '@radix-ui/react-slider';
-import { useEffect, useState } from 'react';
 import {
     sliderRoot,
     sliderTrack,
     sliderRange,
     sliderThumb,
-    inputWrapper,
-    input,
 } from './RangeSlider.styles';
 import { Container } from '../../atoms';
 
@@ -16,39 +13,6 @@ export interface RangeSliderProps {
 }
 
 export const RangeSlider = ({ value, onValueChange }: RangeSliderProps) => {
-    const [inputValues, setInputValues] = useState<[string, string]>([
-        String(value[0]),
-        String(value[1]),
-    ]);
-
-    useEffect(() => {
-        setInputValues([String(value[0]), String(value[1])]);
-    }, [value]);
-
-    const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        idx: 0 | 1
-    ) => {
-        const txt = e.target.value;
-        setInputValues((prev) => {
-            const copy: [string, string] = [...prev];
-            copy[idx] = txt;
-            return copy;
-        });
-    };
-
-    const commitInput = (idx: 0 | 1) => {
-        const num = Number(inputValues[idx]);
-        if (Number.isFinite(num)) {
-            const clamped = Math.max(0, Math.min(2000, num));
-            const next: [number, number] = [...value];
-            next[idx] = clamped;
-            if (next[0] > next[1]) next[idx === 0 ? 1 : 0] = clamped;
-            onValueChange(next);
-        } else {
-            setInputValues([String(value[0]), String(value[1])]);
-        }
-    };
 
     return (
         <form className="w-full flex flex-col gap-4">

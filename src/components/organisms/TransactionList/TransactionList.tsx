@@ -10,7 +10,7 @@ import { downloadCsv } from '../../../utils/downloadTransactionCsv';
 import { TransactionFilters } from '../TransactionFilters/TransactionFilters';
 
 export const TransactionList: FC = () => {
-    const { filteredTransactions, getTransactionsInRange, isLoading } = useFilteredTransactions();
+    const { filteredTransactions, getTransactionsInRange, isLoading, hasCustomFilters } = useFilteredTransactions();
     const { metadata } = useTransactions();
     const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
     const [calendarOpen, setCalendarOpen] = useState(false);
@@ -69,6 +69,7 @@ export const TransactionList: FC = () => {
                 onFilterClick={() => setFiltersOpen(true)}
                 onExportClick={toggleCalendar}
             />
+
             <div className="flex flex-col divide-y divide-neutralHard ">
                 {filteredTransactions.map((tx) => (
                     <TransactionItem
