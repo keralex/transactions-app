@@ -2,7 +2,7 @@ import { useState, type FC } from 'react';
 import dayjs from 'dayjs';
 import { useTransactions } from '../../../hooks/useTransactions';
 import { useFilteredTransactions } from '../../../hooks/useFilteredTransactions';
-import { TransactionHeader, TransactionItem } from '../../molecules';
+import { EmptyState, TransactionHeader, TransactionItem } from '../../molecules';
 import { Button, Container, Icon, Text } from '../../atoms';
 import type { DateRange } from 'react-day-picker';
 import { DateRangeCalendar } from '../../molecules/DateRangeCalendar';
@@ -69,21 +69,25 @@ export const TransactionList: FC = () => {
                 onFilterClick={() => setFiltersOpen(true)}
                 onExportClick={toggleCalendar}
             />
+            {filteredTransactions.length === 0 && !isLoading ? (
+                <EmptyState />
+            ) : (
 
-            <div className="flex flex-col divide-y divide-neutralHard ">
-                {filteredTransactions.map((tx) => (
-                    <TransactionItem
-                        key={tx.id}
-                        label={getLabel(tx.paymentMethod)}
-                        amount={new Intl.NumberFormat('es-AR', {
-                            style: 'currency',
-                            currency: 'ARS',
-                            minimumFractionDigits: 2,
-                        }).format(tx.amount)}
-                        date={dayjs(tx.createdAt).format('DD/MM/YYYY')}
-                    />
-                ))}
-            </div>
+                <div className="flex flex-col divide-y divide-neutralHard ">
+                    {filteredTransactions.map((tx) => (
+                        <TransactionItem
+                            key={tx.id}
+                            label={getLabel(tx.paymentMethod)}
+                            amount={new Intl.NumberFormat('es-AR', {
+                                style: 'currency',
+                                currency: 'ARS',
+                                minimumFractionDigits: 2,
+                            }).format(tx.amount)}
+                            date={dayjs(tx.createdAt).format('DD/MM/YYYY')}
+                        />
+                    ))}
+                </div>
+            )}
             <TransactionFilters
                 isVisible={filtersOpen}
                 onClose={() => setFiltersOpen(false)}
