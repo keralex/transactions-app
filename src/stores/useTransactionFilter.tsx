@@ -46,7 +46,7 @@ export const useTransactionFilter = create<FilterStore>((set, get) => ({
     selectedMethods: [],
     selectedInstallments: [],
     selectedDates: undefined,
-    amountRange: [0, 10000],
+    amountRange: [0, 2000],
     installmentOptions: [1, 2, 3, 6, 12],
 
     // Card selection toggle

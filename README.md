@@ -101,7 +101,6 @@ Se tomaron en cuenta buenas prácticas de arquitectura de software para garantiz
 - 🎨 **Mejor separación de estilos**: evitar lógica de layout repetida.
 - 🧪 **Agregar tests de integración** para flujos completos (ej: aplicar filtros y verificar resultados).
 - 💅 **Mejorar botones** con estados `:disabled`, `:hover`, `:focus-visible`, etc.
-- ⏳ **Agregar skeletons** de carga para una experiencia más fluida.
 - 🧠 **Lazy loading** en componentes pesados como métricas o gráficos (usando `React.lazy` + `Suspense`).
 - 🎯 **Paginar o virtualizar** la lista de transacciones si crece mucho.
 - 🧹 Mejorar limpieza de filtros para mejorar UX en combinaciones complejas.
@@ -112,7 +111,7 @@ Se tomaron en cuenta buenas prácticas de arquitectura de software para garantiz
 
 Desplegado en
 
-- [Netlify](https://www.netlify.com/)
+- [Netlify](https://uala-kerlis-aguado.netlify.app/)
 
 ---
 
