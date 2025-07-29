@@ -9,7 +9,7 @@ export const cornerStyle = `
     right: 0;
     width: 32px;
     height: 32px;
-    background-image: url('src/assets/icons/b-corner.svg'); 
+    background-image: url('/assets/icons/b-corner.svg');
     background-size: contain;
     background-repeat: no-repeat;
     pointer-events: none;
