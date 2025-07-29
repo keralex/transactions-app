@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { useTransactions } from '../../../hooks/useTransactions';
 import { useFilteredTransactions } from '../../../hooks/useFilteredTransactions';
 import { EmptyState, TransactionHeader, TransactionItem } from '../../molecules';
-import { Button, Container, Icon, Text } from '../../atoms';
+import { Button, Container, Icon, Skeleton, Text } from '../../atoms';
 import type { DateRange } from 'react-day-picker';
 import { DateRangeCalendar } from '../../molecules/DateRangeCalendar';
 import { downloadCsv } from '../../../utils/downloadTransactionCsv';
@@ -29,7 +29,6 @@ export const TransactionList: FC = () => {
     const getLabel = (method: string) =>
         metadata.paymentMethods.find((m) => m.value === method)?.label ?? method;
 
-    if (isLoading) return <p>Cargando transacciones...</p>;
 
     return (
         <Container className='px-5' >
@@ -72,21 +71,38 @@ export const TransactionList: FC = () => {
             {filteredTransactions.length === 0 && !isLoading ? (
                 <EmptyState />
             ) : (
+                isLoading ?
 
-                <div className="flex flex-col divide-y divide-neutralHard ">
-                    {filteredTransactions.map((tx) => (
-                        <TransactionItem
-                            key={tx.id}
-                            label={getLabel(tx.paymentMethod)}
-                            amount={new Intl.NumberFormat('es-AR', {
-                                style: 'currency',
-                                currency: 'ARS',
-                                minimumFractionDigits: 2,
-                            }).format(tx.amount)}
-                            date={dayjs(tx.createdAt).format('DD/MM/YYYY')}
-                        />
-                    ))}
-                </div>
+                    Array.from({ length: 6 }).map((_, index) => (
+                        <Container
+                            key={index}
+                            isFlex
+                            align="center"
+                            className="w-full gap-2 px-2 py-2"
+                        >
+                            <Skeleton width="45px" height="40px" />
+                            <Skeleton width="100%" height="40px" />
+                        </Container>
+                    ))
+
+                    :
+
+
+                    <div className="flex flex-col divide-y divide-neutralHard ">
+                        {filteredTransactions.map((tx) => (
+                            <TransactionItem
+                                key={tx.id}
+                                label={getLabel(tx.paymentMethod)}
+                                amount={new Intl.NumberFormat('es-AR', {
+                                    style: 'currency',
+                                    currency: 'ARS',
+                                    minimumFractionDigits: 2,
+                                }).format(tx.amount)}
+                                date={dayjs(tx.createdAt).format('DD/MM/YYYY')}
+                            />
+                        ))}
+                    </div>
+
             )}
             <TransactionFilters
                 isVisible={filtersOpen}

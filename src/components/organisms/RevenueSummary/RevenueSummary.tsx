@@ -1,4 +1,4 @@
-import { Container, Link, Text } from '../../atoms';
+import { Container, Link, Skeleton, Text } from '../../atoms';
 import { useTransactionFilter } from '../../../stores/useTransactionFilter';
 import { type FC } from 'react';
 import { useFilteredTransactions } from '../../../hooks/useFilteredTransactions';
@@ -11,7 +11,7 @@ const options = [
 
 export const RevenueSummary: FC = () => {
     const { filter, setFilter } = useTransactionFilter();
-    const { amountParts, hasCustomFilters } = useFilteredTransactions();
+    const { amountParts, hasCustomFilters, isLoading } = useFilteredTransactions();
     return (
         <div className='bg-white '>
             <Container className=" bg-background-base p-4 pt-20 border-r border-[#DEE2EC] rounded-tr-[28px] border-tl-transparent  " isFlex direction="column" gap={4}>
@@ -31,11 +31,18 @@ export const RevenueSummary: FC = () => {
                         ))}
                     </div>
                 }
+
                 <Container isFlex justify='center' align='center' className='mb-4 w-full'>
-                    <Text as='p' className="text-[34px] text-text-dark" >
-                        + $ {amountParts.integer}
-                        <Text as='span' className="text-[22px] ">,{amountParts.decimal}</Text>
-                    </Text>
+                    {isLoading ?
+                        <Skeleton width='207px' height='40px' />
+                        :
+
+
+                        <Text as='p' className="text-[34px] text-text-dark" >
+                            + $ {amountParts.integer}
+                            <Text as='span' className="text-[22px] ">,{amountParts.decimal}</Text>
+                        </Text>
+                    }
                 </Container>
                 <Container isFlex justify='center' padding='lg' className='w-full'>
                     <Link
