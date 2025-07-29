@@ -105,17 +105,14 @@ Se tomaron en cuenta buenas prácticas de arquitectura de software para garantiz
 - 🧠 **Lazy loading** en componentes pesados como métricas o gráficos (usando `React.lazy` + `Suspense`).
 - 🎯 **Paginar o virtualizar** la lista de transacciones si crece mucho.
 - 🧹 Mejorar limpieza de filtros para mejorar UX en combinaciones complejas.
-- 🔁 Implementar polling o revalidación si la app fuera real-time (ej: cobros entrantes).
 
 ---
 
 ## 📤 Deploy
 
-Se puede desplegar en servicios como:
+Desplegado en
 
-- [Vercel](https://vercel.com/)
 - [Netlify](https://www.netlify.com/)
-- [Render](https://render.com/)
 
 ---
 
