@@ -1,69 +1,134 @@
-# React + TypeScript + Vite
+# 💳 Ualá - Web Developer Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web mobile-first que simula una sección de cobros para un comercio, permitiendo al usuario visualizar su saldo, transacciones, aplicar filtros avanzados, exportar movimientos y ver métricas generales. Desarrollado como parte del challenge técnico de Ualá.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+- **React** + **Vite** + **TypeScript**
+- **Zustand** para manejo de estado
+- **React Query** para consumo y caché de datos
+- **Tailwind CSS** con tema custom Ualá
+- **React Aria Components** para accesibilidad (datepicker)
+- **Jest + React Testing Library** para testing
+- **ESLint + Prettier** para código limpio
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Instalación y ejecución
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+```bash
+# Clonar el repo
+git clone https://github.com/keralex/transactions-app.git
+cd transactions-app
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Instalar dependencias
+npm install
+
+# Levantar entorno de desarrollo
+npm run dev
+
+# Correr tests
+npm run test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧱 Arquitectura del proyecto
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+La app se estructura siguiendo el enfoque **Atomic Design**, para promover la **reusabilidad**, **modularidad** y **mantenibilidad**:
+
 ```
+src/
+├── components/
+│   ├── atoms/         # Elementos básicos (Text, Icon, Button)
+│   ├── molecules/     # Combinaciones (FilterGroup, CalendarExport, EmptyState)
+│   ├── organisms/     # Secciones grandes (TransactionList, MetricsSection)
+├── hooks/             # Custom hooks optimizados
+├── services/          # Abstracción del acceso a la API
+├── stores/            # Zustand: filtros, fecha, métodos, tarjetas
+├── types/             # Tipados globales
+├── utils/             # Helpers de fecha, monto, etc.
+├── theme/             # Configuración de Tailwind
+├── pages/             # Rutas principales
+```
+
+---
+
+## 🧠 Principios de diseño aplicados
+
+Se tomaron en cuenta buenas prácticas de arquitectura de software para garantizar escalabilidad y calidad:
+
+- **SOLID**
+  - **S**ingle Responsibility: los componentes tienen responsabilidades únicas.
+  - **O**pen/Closed: los componentes son fácilmente extensibles sin ser modificados.
+  - **L**iskov Substitution: las props se respetan por contrato gracias a TypeScript.
+  - **I**nterface Segregation: tipos concisos por feature.
+  - **D**ependency Inversion: los servicios son desacoplados (por ejemplo, fetch aislado).
+
+- **Performance**:
+  - `useMemo` y `useCallback` aplicados en hooks y componentes donde había cálculos pesados (filtros, totales).
+  - `React.memo` usado en componentes atómicos y listas.
+  - Separación de lógica de UI para evitar renders innecesarios.
+
+- **Accesibilidad**:
+  - Uso de roles e `aria-label` en botones.
+  - Date picker accesible con `react-aria-components`.
+
+---
+
+## ⚙️ Decisiones técnicas
+
+- Zustand para filtros por su sencillez y ergonomía.
+- React Query para cachear datos y manejar loading/error de forma declarativa.
+- Diseño mobile-first basado en Figma con Tailwind y componentes flexibles.
+- El filtrado de transacciones es reactivo, calculado por un hook (`useFilteredTransactions`) desacoplado del UI.
+- Calendario personalizado para exportar movimientos sin librerías pesadas.
+
+---
+
+## 🧪 Testing
+
+- Se realizaron tests unitarios con Jest + React Testing Library en componentes clave.
+- Se testean funciones de formateo, renderizado condicional, y comportamiento de UI.
+
+---
+
+## 🌱 Mejoras futuras
+
+- ✂️ **Mayor componentización de organismos**: separar aún más lógica interna en moléculas o hooks.
+- 🎨 **Mejor separación de estilos**: evitar lógica de layout repetida.
+- 🧪 **Agregar tests de integración** para flujos completos (ej: aplicar filtros y verificar resultados).
+- 💅 **Mejorar botones** con estados `:disabled`, `:hover`, `:focus-visible`, etc.
+- ⏳ **Agregar skeletons** de carga para una experiencia más fluida.
+- 🧠 **Lazy loading** en componentes pesados como métricas o gráficos (usando `React.lazy` + `Suspense`).
+- 🎯 **Paginar o virtualizar** la lista de transacciones si crece mucho.
+- 🧹 Mejorar limpieza de filtros para mejorar UX en combinaciones complejas.
+- 🔁 Implementar polling o revalidación si la app fuera real-time (ej: cobros entrantes).
+
+---
+
+## 📤 Deploy
+
+Se puede desplegar en servicios como:
+
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
+- [Render](https://render.com/)
+
+---
+
+## 📁 API utilizada
+
+Datos mock de transacciones:
+
+```
+https://uala-dev-challenge.s3.us-east-1.amazonaws.com/transactions.json
+```
+
+---
+
+## 🧑‍💻 Autor
+
+Desarrollado por [Kerlis Aguado](https://github.com/keralex) para el challenge técnico de Ualá 🚀
